@@ -1,0 +1,20 @@
+{
+    "name": "sandstorm/neos-init-e2e-tests-plugin",
+    "description": "A Composer plugin that scaffolds end-to-end (E2E) test infrastructure for Neos CMS packages.",
+    "type": "composer-plugin",
+    "autoload": {
+        "psr-4": {
+            "Sandstorm\\NeosInitE2ETestsPlugin\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=8.2",
+        "composer-plugin-api": "^2.0"
+    },
+    "require-dev": {
+        "composer/composer": "^2.0"
+    },
+    "extra": {
+        "class": "Sandstorm\\NeosInitE2ETestsPlugin\\Plugin"
+    }
+}
