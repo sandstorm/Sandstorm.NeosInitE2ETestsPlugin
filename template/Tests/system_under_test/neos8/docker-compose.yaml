@@ -1,19 +1,7 @@
+# WHY: GitHub actions does not support Docker Compose v5 yet - which in turn does not support overrides of included files.
+#      This is how it's supposed to be done anyway: https://docs.docker.com/compose/how-tos/multiple-compose-files/include/#using-overrides-with-included-compose-files
+
 include:
   - path:
       - ../sut-base-docker-compose.yaml
-
-services:
-  neos:
-    build:
-      args:
-        PHP_VERSION: '8.2'
-        NEOS_VERSION: '8'
-        ENTRY_POINT_FILE: 'Tests/system_under_test/neos8/entrypoint.sh'
-
-volumes:
-  db_neos_data:
-    name: db_neos8_data
-
-networks:
-  neos_SUT:
-    name: neos8_SUT
+      - ./compose-overrides-neos8.yaml
