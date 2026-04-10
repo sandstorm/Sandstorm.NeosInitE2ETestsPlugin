@@ -105,11 +105,6 @@ class InitCommand extends BaseCommand
                 continue;
             }
 
-            $sourcePerms = fileperms($item->getPathname());
-            if ($sourcePerms !== false && ($sourcePerms & 0111)) {
-                chmod($destination, $sourcePerms & 0777);
-            }
-
             $output->writeln("  - Created: $relativePath");
         }
     }
