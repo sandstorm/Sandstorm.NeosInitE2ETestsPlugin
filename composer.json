@@ -2,6 +2,7 @@
     "name": "sandstorm/neos-init-e2e-tests-plugin",
     "description": "A Composer plugin that scaffolds end-to-end (E2E) test infrastructure for Neos CMS packages.",
     "type": "composer-plugin",
+    "license": "MIT",
     "autoload": {
         "psr-4": {
             "Sandstorm\\NeosInitE2ETestsPlugin\\": "src/"
