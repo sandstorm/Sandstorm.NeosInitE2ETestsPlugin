@@ -34,7 +34,7 @@ class InitCommand extends BaseCommand
         $output->writeln("  PackageName: <comment>$packageName</comment>");
         $output->writeln("  PackageKey:  <comment>$packageKey</comment>");
 
-        $this->copyDirectory($templateDir, $projectRoot, $packageName, $packageKey, $output);
+        $this->writeTemplate($templateDir, $projectRoot, $packageName, $packageKey, $output);
 
         $output->writeln('<info>Done.</info>');
         return 0;
@@ -51,7 +51,7 @@ class InitCommand extends BaseCommand
         return implode('', array_map('ucfirst', preg_split('/[-_]+/', $segment)));
     }
 
-    private function copyDirectory(
+    private function writeTemplate(
         string          $sourceDir,
         string          $targetDir,
         string          $packageName,
@@ -89,13 +89,11 @@ class InitCommand extends BaseCommand
                 continue;
             }
 
-            if (mb_check_encoding($content, 'UTF-8')) {
-                $content = str_replace(
-                    ['{{PackageName}}', '{{PackageKey}}'],
-                    [$packageName, $packageKey],
-                    $content
-                );
-            }
+            $content = str_replace(
+                ['{{PackageName}}', '{{PackageKey}}'],
+                [$packageName, $packageKey],
+                $content
+            );
 
             $parentDir = dirname($destination);
             if (!is_dir($parentDir)) {
@@ -105,11 +103,6 @@ class InitCommand extends BaseCommand
             if (file_put_contents($destination, $content) === false) {
                 $output->writeln("  - <error>Failed to write:</error> $relativePath");
                 continue;
-            }
-
-            $sourcePerms = fileperms($item->getPathname());
-            if ($sourcePerms !== false && ($sourcePerms & 0111)) {
-                chmod($destination, $sourcePerms & 0777);
             }
 
             $output->writeln("  - Created: $relativePath");
