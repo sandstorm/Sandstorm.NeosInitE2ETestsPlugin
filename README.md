@@ -34,6 +34,22 @@ Inside the root of your Neos package, run:
 composer e2e:init
 ```
 
+### Without Composer (bash bootstrap)
+
+If you don't want to add a dev dependency just for the one-shot scaffold, run the bundled bash script instead. It downloads the template directly from GitHub and applies the same logic. From the root of your Neos package:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/sandstorm/Sandstorm.NeosInitE2ETestsPlugin/main/init-e2e-tests.sh | bash
+```
+
+To pin a specific ref, set `E2E_REF`:
+
+```bash
+E2E_REF=v1.2.3 curl -fsSL https://raw.githubusercontent.com/sandstorm/Sandstorm.NeosInitE2ETestsPlugin/main/init-e2e-tests.sh | bash
+```
+
+Requires `curl`, `tar`, `jq`, and `sed` in `PATH`.
+
 The plugin reads your `composer.json` to determine the package name and derives the Neos package key automatically (e.g. `vendor/my-package` → `Vendor.MyPackage`). It then copies the template into your project, substituting those values wherever needed.
 
 **The operation is non-destructive** — existing files are never overwritten. Pass `-v` to see which files are skipped:
