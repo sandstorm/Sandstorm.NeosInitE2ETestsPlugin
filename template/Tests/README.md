@@ -108,6 +108,27 @@ Tests/
 
 Tests are written in two parts: a **feature file** (what to test, in plain language) and a **steps file** (how to do it, in TypeScript).
 
+### 0. IDE Goodies
+
+Syntax highlighting, "Go to Definition" from feature files to step implementations, and other IDE features are available with the right setup:
+
+#### VSCode
+1. Install the official Cucumber extension (`CucumberOpen.cucumber-official`) for syntax highlighting and step definition navigation.
+2. Add the path "./steps/**/*.ts" to the extension's `glue` configuration to enable "Go to Definition" from feature files to step implementations.
+   ```
+   {
+       "cucumber.glue": [
+           "steps/**/*.steps.ts",
+           ...
+       ]
+   }
+   ```
+
+#### JetBrains IDEs
+1. Install the "Gherkin" plugin by JetBrains.
+2. Install the "Cucumber.js" plugin by JetBrains for step definition navigation.
+3. Configure the `.features-gen` to be "Excluded" in the project structure to avoid cluttering the navigation context menu with auto-generated files.
+
 ### 1. Write a feature file
 
 Create a `.feature` file under `E2E/features/`. Organise by feature area:
