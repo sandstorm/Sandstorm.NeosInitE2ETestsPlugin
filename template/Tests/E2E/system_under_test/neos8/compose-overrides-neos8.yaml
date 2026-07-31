@@ -3,7 +3,7 @@ services:
     build:
       args:
         PHP_VERSION: '8.2'
-        NEOS_VERSION: '8'
+        NEOS_VERSION: '^8'
         ENTRY_POINT_FILE: 'Tests/E2E/system_under_test/neos8/entrypoint.sh'
 
 volumes:
