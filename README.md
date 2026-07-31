@@ -26,7 +26,9 @@ Add the plugin to your package's dev dependencies:
 composer require --dev sandstorm/neos-init-e2e-tests-plugin
 ```
 
-## Usage
+## Usage (Deprecated)
+
+> **Deprecation notice:** The Composer plugin should not be used anymore - installing a composer plugin just to scaffold a test suite is overkill. Use the bash bootstrap instead (see below).
 
 Inside the root of your Neos package, run:
 
@@ -34,7 +36,7 @@ Inside the root of your Neos package, run:
 composer e2e:init
 ```
 
-### Without Composer (bash bootstrap)
+## Usage Without Composer (bash bootstrap)
 
 If you don't want to add a dev dependency just for the one-shot scaffold, run the bundled bash script instead. It downloads the template directly from GitHub and applies the same logic. From the root of your Neos package:
 
@@ -42,7 +44,7 @@ If you don't want to add a dev dependency just for the one-shot scaffold, run th
 curl -fsSL https://raw.githubusercontent.com/sandstorm/Sandstorm.NeosInitE2ETestsPlugin/main/init-e2e-tests.sh | bash
 ```
 
-To pin a specific ref, set `E2E_REF`:
+To pin a specific ref, set `E2E_REF` (usually not necessary):
 
 ```bash
 E2E_REF=v1.2.3 curl -fsSL https://raw.githubusercontent.com/sandstorm/Sandstorm.NeosInitE2ETestsPlugin/main/init-e2e-tests.sh | bash
@@ -84,28 +86,27 @@ The following placeholders are replaced in all copied files:
 ## Scaffolded structure
 
 ```
-Tests/
+Tests/E2E/                           # Playwright BDD test suite
 ├── Makefile                         # Developer shortcuts
 ├── README.md                        # How to run and write tests
-├── E2E/                             # Playwright BDD test suite
-│   ├── features/                    # Gherkin feature files
-│   ├── steps/                       # TypeScript step implementations
-│   ├── helpers/                     # Page objects and system utilities
-│   ├── playwright.config.ts
-│   └── package.json
+├── features/                        # Gherkin feature files
+├── steps/                           # TypeScript step implementations
+├── helpers/                         # Page objects and system utilities
+├── playwright.config.ts
+├── package.json
 └── system_under_test/               # Docker environments
     ├── Dockerfile
     ├── sut-base-docker-compose.yaml # Shared compose base
     ├── neos8/                       # Neos 8 + PHP 8.2 + MariaDB 10.11
     ├── neos9/                       # Neos 9 + PHP 8.5 + MariaDB 11.4
-    └── sut_file_system_overrides/   # Neos/PHP/web server config
+    └── sut_file_system_overrides/   # Neos/web server config
 
 .github/
 └── workflows/
     └── e2e.yml                      # GitHub Actions CI workflow
 ```
 
-See `Tests/README.md` (created in your project) for instructions on running tests and writing new ones.
+See `Tests/E2E/README.md` (created in your project) for instructions on running tests and writing new ones.
 
 ## How the SUT works
 

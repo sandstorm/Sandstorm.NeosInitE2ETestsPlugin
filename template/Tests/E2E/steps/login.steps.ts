@@ -1,6 +1,7 @@
 import { expect } from "@playwright/test";
 import { createBdd } from "playwright-bdd";
-import { NeosContentPage, NeosLoginPage } from "../helpers/general-pages.ts";
+import NeosContentPage from "../helpers/pages/contentPage.ts";
+import NeosLoginPage from "../helpers/pages/loginPage.ts";
 import { createUser, logout } from "../helpers/system.ts";
 
 const { Given, When, Then } = createBdd();
