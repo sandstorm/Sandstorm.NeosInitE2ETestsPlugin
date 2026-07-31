@@ -26,7 +26,7 @@ export default defineConfig({
   },
   globalTeardown: "./global-teardown.ts",
   webServer: {
-    command: `echo "starting SUT ${SUT} with context ${FLOW_CONTEXT}"; FLOW_CONTEXT=${FLOW_CONTEXT} docker compose -f ../system_under_test/${SUT}/docker-compose.yaml up`,
+    command: `echo "starting SUT ${SUT} with context ${FLOW_CONTEXT}"; FLOW_CONTEXT=${FLOW_CONTEXT} docker compose -f ./system_under_test/${SUT}/docker-compose.yaml up`,
     url: "http://localhost:8081/",
     timeout: 600_000,
     stdout: "pipe",
@@ -37,6 +37,7 @@ export default defineConfig({
       name: "chromium",
       use: { ...devices["Desktop Chrome"] },
     },
+    // Add more devices here if you need to test them. Make sure they are installed in Makefile setup step.
   ],
   reporter: process.env.CI ? "html" : "list",
 });
