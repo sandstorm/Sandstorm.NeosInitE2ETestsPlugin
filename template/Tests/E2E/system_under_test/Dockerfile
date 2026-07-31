@@ -25,7 +25,7 @@ RUN \
 # Install Neos base distribution
 ARG NEOS_VERSION
 RUN rm -rf /app \
-  && composer create-project neos/neos-base-distribution:^${NEOS_VERSION} /app
+  && composer create-project neos/neos-base-distribution:${NEOS_VERSION} /app
 
 # Add config files
 COPY Tests/E2E/system_under_test/sut_file_system_overrides/ /
